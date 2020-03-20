@@ -44,6 +44,7 @@ In this json settings are enabled that will help you write better code that is l
 }
 ```
 
+### Requirements
 The design and code structure for the application is up to you.
 
 The requirements for the application are:
