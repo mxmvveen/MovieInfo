@@ -1,0 +1,53 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+}
+.container {
+    width: 1200px;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    ul {
+        list-style-type: none;
+        padding: 0;
+        li {
+            padding: 5px 0;
+            text-decoration: underline;
+            cursor: pointer;
+        }
+    }
+    > div {
+        margin-top: 20px;
+    }
+}
+header {
+    height: 60px;
+    width: 100%;
+    background-color: blue;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-self: center;
+    padding-top: 20px;
+    font-weight: bold;
+    box-sizing: border-box;
+}
+
+.favorites {
+    .title {
+        font-weight: bold;
+    }
+}
+
+.search-movie {
+    input {
+        margin-right: 5px;
+    }
+}
+
+.show-movie {
+    ul {
+        li {
+            text-decoration: none;
+        }
+    }
+}
