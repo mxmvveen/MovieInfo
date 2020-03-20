@@ -7,11 +7,46 @@ You can also use Typescript if you are looking for a bit more challenge.
 
 ### Typescript
 If you are using Typescript then I have set up a config file. So that you don't have to dive into the settings yourself. 
-This config file enables settings that will help you write better code that is less sensible for errors and coding mistakes. You can find the file on the end of this readme.
+You can overwrite the `tsconfig.json` in your project with the json you can find below.
+In this json settings are enabled that will help you write better code that is less sensible for errors and coding mistakes.
+
+```
+{
+  "compilerOptions": {
+    "target": "es5",
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    "allowJs": false,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "noUnusedLocals": true,
+    "jsx": "react",
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "allowUnreachableCode": false,
+    "allowUnusedLabels": false,
+    "noImplicitReturns": true
+  },
+  "include": [
+    "src"
+  ]
+}
+```
 
 The design and code structure for the application is up to you.
 
-The requirements for the application are;
+The requirements for the application are:
 - Make use of the Open Movie Database (http://www.omdbapi.com/)
 - Create a search functionality where in you can search for movies. After searching you have to display a list of found movies.
 - Keep track of a search history, with the possibility to delete items from the search history.
