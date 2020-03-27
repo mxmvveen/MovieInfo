@@ -1,19 +1,22 @@
 import React from 'react';
-import { Movie } from 'typeDefs/application';
+import { OMBdSearchMovieResult } from 'typeDefs';
 
 interface ShowMovieProps {
-    movie: Movie;
-    onAddToFavoriteMovies: (movie: Movie) => void;
+    movie: OMBdSearchMovieResult;
+    onAddToFavoriteMovies: (movie: OMBdSearchMovieResult) => void;
 }
 
 const ShowMovie = (props: ShowMovieProps) => {
   return (
     <div className="show-movie">
         <ul>
-            {Object.entries(props.movie).map(([infoType, infoVal]) => {
-                return <li>{infoType !== 'Poster' && `${infoType}:`} {infoType === 'Poster' ? <img src={infoVal} alt={props.movie.Title} /> : infoVal}</li>
-            })}
-             <span onClick={() => props.onAddToFavoriteMovies(props.movie)}>(add to favorites)</span>
+            {Object.entries(props.movie).map(([infoType, infoVal]) =>
+                <li key={`${infoType}-${infoVal}`}>
+                  {infoType !== 'Poster' && `${infoType}:`}
+                  {infoType === 'Poster' ? <img src={infoVal} alt={props.movie.Title} /> : infoVal}
+                </li>
+            )}
+            <span onClick={() => props.onAddToFavoriteMovies(props.movie)}>add to favorites</span>
         </ul>
     </div>
   );

@@ -1,12 +1,12 @@
 import React from 'react';
-import { Movie } from 'typeDefs/application';
+import { OMBdSearchMovieResult } from 'typeDefs';
 
 interface SearchMovieProps {
     onMovieTitleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
     movieTitle: string;
     onSearchMovie: (title?: string) => void;
-    movieList?: Movie[];
-    setMovieToShow: (movie: Movie) => void;
+    movieList?: OMBdSearchMovieResult[];
+    setMovieToShow: (movie: OMBdSearchMovieResult) => void;
     searchHistory: string[];
     onDeleteFromHistory: (index: number) => void;
 }
@@ -30,18 +30,25 @@ const SearchMovie = (props: SearchMovieProps) => {
                     <button>Search</button>
                 </form>
                 <ul>
-                    {props.movieList !== undefined && props.movieList.map((movie: Movie) => {
-                        return <li onClick={() => props.setMovieToShow(movie)}>
+                    {props.movieList !== undefined && props.movieList.map((movie: OMBdSearchMovieResult, index: number) =>
+                        <li onClick={() => props.setMovieToShow(movie)} key={`${index}-${movie.Title}`}>
                             {movie.Title}
                         </li>
-                    }) }
+                    ) }
                 </ul>
             </div>
             <div>
-            {props.searchHistory.length > 0 && 'History'}
-            <ul>
-                {props.searchHistory.map((movieTitle: string, index: number) => <li><span onClick={() => props.onSearchMovie(movieTitle)}>{movieTitle}</span> <span onClick={() => props.onDeleteFromHistory(index)}>x</span></li>)}
-            </ul>
+                {props.searchHistory.length > 0 && 'History'}
+                <ul>
+                    {props.searchHistory.map((movieTitle: string, index: number) =>
+                        <li key={`${index}-${movieTitle}`}>
+                            <span onClick={() => props.onSearchMovie(movieTitle)}>
+                                {movieTitle}
+                            </span>
+                            <span onClick={() => props.onDeleteFromHistory(index)}>x</span>
+                        </li>
+                    )}
+                </ul>
             </div>
         </>
     );

@@ -1,15 +1,15 @@
 import React from 'react';
 import { getMovieList } from 'api/application';
-import { Movie } from 'typeDefs/application';
-import ShowMovie from './ShowMovie';
-import SearchMovie from './SearchMovie';
+import { OMBdSearchMovieResult } from 'typeDefs';
+import ShowMovie from 'components/ShowMovie';
+import SearchMovie from 'components/SearchMovie';
 
 const MovieComponent = () => {
     const [movieTitle, setMovieTitle] = React.useState<string>('');
-    const [movieList, setMovieList] = React.useState<Movie[] | undefined>(undefined);
-    const [movieToShow, setMovieToShow] = React.useState<Movie | undefined>(undefined);
+    const [movieList, setMovieList] = React.useState<OMBdSearchMovieResult[] | undefined>(undefined);
+    const [movieToShow, setMovieToShow] = React.useState<OMBdSearchMovieResult | undefined>(undefined);
     const [searchHistory, setSearchHistory] = React.useState<string[]>([]);
-    const [favoriteMovies, setFavoriteMovies] = React.useState<Movie[]>([]);
+    const [favoriteMovies, setFavoriteMovies] = React.useState<OMBdSearchMovieResult[]>([]);
 
     /**
      * On movie title change.
@@ -46,7 +46,7 @@ const MovieComponent = () => {
      * On add to favorites.
      * @param movie
      */
-    const onAddToFavoriteMovies = (movie: Movie) => {
+    const onAddToFavoriteMovies = (movie: OMBdSearchMovieResult) => {
         if (!favoriteMovies.includes(movie)) {
             setFavoriteMovies([...favoriteMovies, movie]);
         }
@@ -57,7 +57,7 @@ const MovieComponent = () => {
      * @param index
      */
     const onDeleteFromFavorites = (index: number) => {
-        const prevFavoriteMovies: Movie[] = [...favoriteMovies];
+        const prevFavoriteMovies: OMBdSearchMovieResult[] = [...favoriteMovies];
         prevFavoriteMovies.splice(index, 1);
         setFavoriteMovies(prevFavoriteMovies);
     };
@@ -68,7 +68,14 @@ const MovieComponent = () => {
             <div className="favorites">
                 <span className="title">Favorites:</span>
                 <ul>
-                    {favoriteMovies.map((movie: Movie, index: number) => <li><span onClick={() => setMovieToShow(movie)}>{movie.Title}</span> <span onClick={() => onDeleteFromFavorites(index)}>x</span></li>)}
+                    {favoriteMovies.map((movie: OMBdSearchMovieResult, index: number) =>
+                        <li>
+                            <span onClick={() => setMovieToShow(movie)}>
+                                {movie.Title}
+                            </span>
+                            <span onClick={() => onDeleteFromFavorites(index)}>x</span>
+                        </li>
+                    )}
                 </ul>
             </div>
             <div className="search-movie">
@@ -83,7 +90,9 @@ const MovieComponent = () => {
                     />
             </div>
             <div>
-                {movieToShow !== undefined && <ShowMovie movie={movieToShow} onAddToFavoriteMovies={onAddToFavoriteMovies} />}
+                {movieToShow !== undefined &&
+                    <ShowMovie movie={movieToShow} onAddToFavoriteMovies={onAddToFavoriteMovies} />
+                }
             </div>
         </div>
         </>
