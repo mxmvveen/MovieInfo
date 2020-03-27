@@ -1,8 +1,8 @@
 import React from 'react';
-import { getMovieList } from 'api/application';
-import { OMBdSearchMovieResult } from 'typeDefs';
-import ShowMovie from 'components/ShowMovie';
-import SearchMovie from 'components/SearchMovie';
+import { getMovieList } from '~/api/application';
+import { OMBdSearchMovieResult } from '~/typeDefs';
+import ShowMovie from '~/components/ShowMovie';
+import SearchMovie from '~/components/SearchMovie';
 
 const MovieComponent = () => {
     const [movieTitle, setMovieTitle] = React.useState<string>('');

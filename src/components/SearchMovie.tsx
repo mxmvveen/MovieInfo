@@ -1,5 +1,5 @@
 import React from 'react';
-import { OMBdSearchMovieResult } from 'typeDefs';
+import { OMBdSearchMovieResult } from '~/typeDefs';
 
 interface SearchMovieProps {
     onMovieTitleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
