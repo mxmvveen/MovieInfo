@@ -1,7 +1,7 @@
 import React from 'react';
 import { OMBdSearchMovieResult } from '~/typeDefs';
 
-interface SearchMovieProps {
+export interface SearchMovieProps {
     onMovieTitleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
     movieTitle: string;
     onSearchMovie: (title?: string) => void;

@@ -16,7 +16,7 @@ const MovieComponent = () => {
      * @param e
      */
     const onMovieTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setMovieTitle(e.target.value)
+        setMovieTitle(e.target.value);
     };
 
     /**
@@ -87,7 +87,7 @@ const MovieComponent = () => {
                     setMovieToShow={setMovieToShow}
                     searchHistory={searchHistory}
                     onDeleteFromHistory={onDeleteFromHistory}
-                    />
+                />
             </div>
             <div>
                 {movieToShow !== undefined &&
