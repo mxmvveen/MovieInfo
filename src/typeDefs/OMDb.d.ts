@@ -1,13 +1,13 @@
-export interface OMBdSearchMovieResult {
+export interface Movie {
+    imdbID: string;
     Title: string;
     Year: string;
-    imdbID: string;
-    type: string;
-    poster: string;
+    Type: string;
+    Poster: string;
 }
 
-export interface OMBdSearchMoviesResult {
-    Search: OMBdSearchMovieResult[];
+export interface SearchMoviesResponse {
+    Search: Movie[];
     totalResults: string;
     Response: string;
 }
