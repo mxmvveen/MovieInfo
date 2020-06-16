@@ -1,5 +1,5 @@
 import axios, { AxiosResponse, AxiosError } from 'axios';
-import { OMDbSearchMoviesResponse, OMDbMovie } from '~/typeDefs/OMDb';
+import { OMDbSearchMoviesResponse, OMDbMovie } from '~/typeDefs';
 const apiKey: string | undefined = process.env.REACT_APP_API_KEY;
 
 export const getMovieList = (title: string): Promise<OMDbMovie[] | void> => {

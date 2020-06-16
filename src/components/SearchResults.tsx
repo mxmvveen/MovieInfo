@@ -1,5 +1,5 @@
 import React from 'react';
-import { OMDbMovie } from '~/typeDefs/OMDb';
+import { OMDbMovie } from '~/typeDefs';
 
 interface SearchResultsProps {
     readonly movies: OMDbMovie[];

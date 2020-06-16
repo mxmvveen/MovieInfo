@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { OMDbMovie } from "~/typeDefs/OMDb";
+import { OMDbMovie } from "~/typeDefs";
 import { getMovieList } from "~/api/application";
 import { saveHistoryQuery } from "~/components/SearchHistory/SearchHistory.utils";
 

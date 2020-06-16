@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { OMDbMovie } from "~/typeDefs/OMDb";
+import { OMDbMovie } from "~/typeDefs";
 
 const useFavourites = () => {
     const [favoriteMovies, setFavoriteMovies] = useState<OMDbMovie[]>([]);
