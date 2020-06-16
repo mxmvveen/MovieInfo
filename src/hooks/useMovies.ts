@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { OMDbMovie } from "~/typeDefs/OMDb";
 import { getMovieList } from "~/api/application";
-import { saveHistoryQuery } from "~/components/SearchHistory/history.utils";
+import { saveHistoryQuery } from "~/components/SearchHistory/SearchHistory.utils";
 
 const useMovies = () => {
     const [movieList, setMovieList] = useState<OMDbMovie[] | undefined>([]);
@@ -11,12 +11,12 @@ const useMovies = () => {
     const onSearchMovie = (searchQuery: string) => {
         saveQueryInHistory(searchQuery);
         getMovieList(searchQuery)
-            .then(movies => setMovieList(movies))
+            .then(movies => movies !== undefined && setMovieList(movies))
     };
 
     const saveQueryInHistory = (searchQuery: string) => {
         setSearchHistory(saveHistoryQuery(searchHistory, searchQuery));
-    }
+    };
 
     const deleteFromHistory = (query: string) => {
         setSearchHistory(searchHistory.filter(item => item !== query));
