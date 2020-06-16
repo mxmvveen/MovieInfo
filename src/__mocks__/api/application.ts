@@ -1,6 +1,6 @@
-import { SearchMoviesResponse } from "~/typeDefs/OMDb";
+import { OMDbSearchMoviesResponse } from "~/typeDefs/OMDb";
 
-export const moveListMockResponse: SearchMoviesResponse = {
+export const moveListMockResponse: OMDbSearchMoviesResponse = {
     Search: [{
         Title: 'test',
         Year: '2012',

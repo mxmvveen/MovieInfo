@@ -1,22 +1,22 @@
 import React from 'react';
 
-type SearchHistoryProps = {
-    history: string[];
-    onSearchMovie: (query: string) => void;
-    onDeleteFromHistory: (query: string) => void;
+interface SearchHistoryProps {
+    readonly history: string[];
+    readonly onSearchMovie: (query: string) => void;
+    readonly onDeleteFromHistory: (query: string) => void;
 }
 
-const SearchHistory: React.FC<SearchHistoryProps> = ({ history, onSearchMovie, onDeleteFromHistory }) => {
+const SearchHistory = (props: SearchHistoryProps) => {
     return (
         <div>
             Search History
             <ul>
-                {history.map((query: string) =>
-                    <li key={`${query}`}>
-                        <span onClick={() => onSearchMovie(query)}>
+                {props.history.map((query: string) =>
+                    <li key={query}>
+                        <span onClick={() => props.onSearchMovie(query)}>
                             {query}
                         </span>
-                        <button onClick={() => onDeleteFromHistory(query)}>x</button>
+                        <button onClick={() => props.onDeleteFromHistory(query)}>x</button>
                     </li>
                 )}
             </ul>

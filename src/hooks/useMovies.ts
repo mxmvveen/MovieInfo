@@ -1,19 +1,20 @@
 import { useState } from "react";
-import { Movie } from "~/typeDefs/OMDb";
+import { OMDbMovie } from "~/typeDefs/OMDb";
 import { getMovieList } from "~/api/application";
 import { saveHistoryQuery } from "~/components/SearchHistory/history.utils";
 
 const useMovies = () => {
-    const [movieList, setMovieList] = useState<Movie[]>([]);
-    const [selectedMovie, setSelectedMovie] = useState<Movie | null>(null);
+    const [movieList, setMovieList] = useState<OMDbMovie[] | undefined>([]);
+    const [selectedMovie, setSelectedMovie] = useState<OMDbMovie | null>(null);
     const [searchHistory, setSearchHistory] = useState<string[]>([]);
 
     const onSearchMovie = (searchQuery: string) => {
         saveQueryInHistory(searchQuery);
-        getMovieList(searchQuery).then(movies => setMovieList(movies))
+        getMovieList(searchQuery)
+            .then(movies => setMovieList(movies))
     };
 
-    function saveQueryInHistory(searchQuery: string) {
+    const saveQueryInHistory = (searchQuery: string) => {
         setSearchHistory(saveHistoryQuery(searchHistory, searchQuery));
     }
 

@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
 
-export interface SearchMovieProps {
+interface SearchMovieProps {
     onSearchMovie: (title: string) => void;
 }
 
-const SearchMovie: React.FC<SearchMovieProps> = ({ onSearchMovie }) => {
-    const [ query, setQuery ] = useState("");
+const SearchMovie = (props: SearchMovieProps) => {
+    const [query, setQuery] = useState('');
     
     const onFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        onSearchMovie(query);
+        props.onSearchMovie(query);
     };
 
     return (
@@ -20,6 +20,6 @@ const SearchMovie: React.FC<SearchMovieProps> = ({ onSearchMovie }) => {
             </form>
         </div>
     );
-}
+};
 
 export default SearchMovie;

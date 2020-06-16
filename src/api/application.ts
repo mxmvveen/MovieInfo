@@ -1,16 +1,11 @@
-import axios from 'axios';
-import { Movie, SearchMoviesResponse } from '~/typeDefs/OMDb';
+import axios, { AxiosResponse, AxiosError } from 'axios';
+import { OMDbSearchMoviesResponse, OMDbMovie } from '~/typeDefs/OMDb';
 const apiKey: string | undefined = process.env.REACT_APP_API_KEY;
 
-export const getMovieList = async (title: string): Promise<Movie[]> => {
-    console.log('the real', title);
+export const getMovieList = (title: string): Promise<OMDbMovie[] | void> => {
     const request: string = `http://www.omdbapi.com/?apikey=${apiKey}&s=${title}`;
-    // TODO: check how to catch error
-    const response = await axios.get<SearchMoviesResponse>(request);
-    if (response) {
-       return response.data.Search || [];
-    }
 
-    return [];
-    // console.log(err);
-}
+    return axios.get(request)
+        .then((response: AxiosResponse<OMDbSearchMoviesResponse>) => response.data.Search)
+        .catch((error: AxiosError) => console.log(error));
+};

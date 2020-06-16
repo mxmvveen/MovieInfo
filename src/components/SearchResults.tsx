@@ -1,21 +1,19 @@
 import React from 'react';
-import { Movie } from '~/typeDefs/OMDb';
+import { OMDbMovie } from '~/typeDefs/OMDb';
 
-type SearchResultsProps = {
-    movies: Movie[];
-    onSelectMovie: (movie: Movie) => void;
+interface SearchResultsProps {
+    readonly movies: OMDbMovie[];
+    readonly onSelectMovie: (movie: OMDbMovie) => void;
 }
 
-const SearchResults: React.FC<SearchResultsProps> = ({ movies, onSelectMovie }) => {
-    return (
-        <ul>
-            {movies.map((movie: Movie, index: number) =>
-                <li onClick={() => onSelectMovie(movie)} key={`${index}-${movie.Title}`}>
-                    {movie.Title}
-                </li>
-            )}
-        </ul>
-    );
-}
+const SearchResults = (props: SearchResultsProps) => (
+    <ul>
+        {props.movies.map((movie: OMDbMovie, index: number) =>
+            <li onClick={() => props.onSelectMovie(movie)} key={`${index}-${movie.Title}`}>
+                {movie.Title}
+            </li>
+        )}
+    </ul>
+);
 
 export default SearchResults;

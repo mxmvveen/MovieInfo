@@ -1,4 +1,4 @@
-export interface Movie {
+export interface OMDbMovie {
     imdbID: string;
     Title: string;
     Year: string;
@@ -6,8 +6,8 @@ export interface Movie {
     Poster: string;
 }
 
-export interface SearchMoviesResponse {
-    Search: Movie[];
+export interface OMDbSearchMoviesResponse {
+    Search: OMDbMovie[];
     totalResults: string;
     Response: string;
 }

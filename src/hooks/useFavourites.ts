@@ -1,10 +1,10 @@
 import { useState } from "react";
-import { Movie } from "~/typeDefs/OMDb";
+import { OMDbMovie } from "~/typeDefs/OMDb";
 
 const useFavourites = () => {
-    const [favoriteMovies, setFavoriteMovies] = useState<Movie[]>([]);
+    const [favoriteMovies, setFavoriteMovies] = useState<OMDbMovie[]>([]);
     
-    const addToFavoriteMovies = (movie: Movie) => {
+    const addToFavoriteMovies = (movie: OMDbMovie) => {
         if (favoriteMovies.includes(movie)) {
             return;
         }
@@ -17,6 +17,6 @@ const useFavourites = () => {
     };
 
     return [ favoriteMovies, addToFavoriteMovies, deleteFromFavorites ] as const;
-}
+};
 
 export default useFavourites;
