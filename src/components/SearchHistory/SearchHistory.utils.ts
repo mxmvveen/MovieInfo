@@ -1,7 +1,1 @@
-export function saveHistoryQuery(history: string[], query: string): string[] {
-    if (history.includes(query)) {
-        return history;
-    }
-
-    return [...history, query];
-}
+export const saveSearchHistory = (history: string[], query: string): string[] => Array.from(new Set([...history, query]));

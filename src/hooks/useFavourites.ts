@@ -1,22 +1,24 @@
-import { useState } from "react";
-import { OMDbMovie } from "~/typeDefs";
+import { useState } from 'react';
+import { OMDbMovie } from '~/typeDefs';
 
-const useFavourites = () => {
-    const [favoriteMovies, setFavoriteMovies] = useState<OMDbMovie[]>([]);
+type UseFavourtis = readonly [OMDbMovie[], (movie: OMDbMovie) => void, (id: string) => void];
+
+const useFavourites = (): UseFavourtis => {
+    const [favouriteMovies, setFavouriteMovies] = useState<OMDbMovie[]>([]);
     
-    const addToFavoriteMovies = (movie: OMDbMovie) => {
-        if (favoriteMovies.includes(movie)) {
+    const addToFavouriteMovies = (movie: OMDbMovie) => {
+        if (favouriteMovies.includes(movie)) {
             return;
         }
 
-        setFavoriteMovies([...favoriteMovies, movie]);
+        setFavouriteMovies([...favouriteMovies, movie]);
     };
 
-    const deleteFromFavorites = (id: string) => {
-        setFavoriteMovies(favoriteMovies.filter(movie => movie.imdbID !== id));
+    const deleteFromFavourites = (id: string) => {
+        setFavouriteMovies(favouriteMovies.filter(movie => movie.imdbID !== id));
     };
 
-    return [ favoriteMovies, addToFavoriteMovies, deleteFromFavorites ] as const;
+    return [ favouriteMovies, addToFavouriteMovies, deleteFromFavourites ];
 };
 
 export default useFavourites;

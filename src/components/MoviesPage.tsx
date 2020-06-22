@@ -16,12 +16,13 @@ const MoviesPage = () => {
         searchHistory,
         deleteFromHistory,
     ] = useMovies();
-    const [ favoriteMovies, addToFavoriteMovies, deleteFromFavourites ] = useFavourites();
+    
+    const [ favouriteMovies, addToFavoriteMovies, deleteFromFavourites ] = useFavourites();
 
     return (
         <div className="container">
             <Favourites 
-                movies={favoriteMovies} 
+                movies={favouriteMovies} 
                 onSelectMovie={setSelectedMovie}
                 onDeleteFromFavourites={deleteFromFavourites}
             />
