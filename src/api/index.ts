@@ -1,0 +1,1 @@
+export { getMovieList } from './application';

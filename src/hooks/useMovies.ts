@@ -1,35 +1,44 @@
 import { useState } from 'react';
 import { OMDbMovie } from '~/typeDefs';
-import { getMovieList } from '~/api/application';
-import { saveSearchHistory } from '~/components/SearchHistory/SearchHistory.utils';
+import { getMovieList } from '~/api';
+import { ArrayUtils } from '~/utils';
 
-const useMovies = () => {
+interface UserMovies {
+    readonly movieList?: OMDbMovie[],
+    readonly onSearchMovie: (query: string) => Promise<false | void>;
+    readonly selectedMovie: OMDbMovie | null;
+    readonly setSelectedMovie: (movie: OMDbMovie) => void;
+    readonly searchHistory: string[];
+    readonly deleteFromHistory: (query: string) => void;
+}
+
+const useMovies = (): UserMovies => {
     const [movieList, setMovieList] = useState<OMDbMovie[] | undefined>([]);
     const [selectedMovie, setSelectedMovie] = useState<OMDbMovie | null>(null);
     const [searchHistory, setSearchHistory] = useState<string[]>([]);
 
-    const onSearchMovie = (searchQuery: string) => {
+    const onSearchMovie = (searchQuery: string): Promise<false | void> => {
         saveQueryInHistory(searchQuery);
-        getMovieList(searchQuery)
-            .then(movies => movies !== undefined && setMovieList(movies))
+        return getMovieList(searchQuery)
+            .then((movies: OMDbMovie[] | void) => movies !== undefined && setMovieList(movies))
     };
 
-    const saveQueryInHistory = (searchQuery: string) => {
-        setSearchHistory(saveSearchHistory(searchHistory, searchQuery));
+    const saveQueryInHistory = (searchQuery: string): void => {
+        setSearchHistory(ArrayUtils.addToNonDuplicateArray(searchHistory, searchQuery));
     };
 
-    const deleteFromHistory = (query: string) => {
+    const deleteFromHistory = (query: string): void => {
         setSearchHistory(searchHistory.filter(item => item !== query));
     };
 
-    return [
+    return {
         movieList,  
         onSearchMovie, 
         selectedMovie,  
         setSelectedMovie,  
         searchHistory,
         deleteFromHistory,
-    ] as const;
+    }
 }
 
 export default useMovies;

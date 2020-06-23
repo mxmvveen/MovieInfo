@@ -1,5 +1,0 @@
-describe('useFavourites', () => {
-    it('should ', () => {
-
-    });
-});

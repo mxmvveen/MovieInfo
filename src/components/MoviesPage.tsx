@@ -2,29 +2,28 @@ import React from 'react';
 import SearchMovie from '~/components/SearchMovie';
 import SearchResults from './SearchResults';
 import ShowMovie from './ShowMovie';
-import SearchHistory from './SearchHistory/SearchHistory';
+import SearchHistory from './SearchHistory';
 import Favourites from './Favourites';
-import useMovies from '~/hooks/useMovies';
-import useFavourites from '~/hooks/useFavourites';
+import { useMovies, useFavourites } from '~/hooks';
 
 const MoviesPage = () => {
-    const [ 
+    const {
         movieList,
         onSearchMovie,
         selectedMovie,
         setSelectedMovie,
         searchHistory,
         deleteFromHistory,
-    ] = useMovies();
+    } = useMovies();
     
-    const [ favouriteMovies, addToFavoriteMovies, deleteFromFavourites ] = useFavourites();
+    const { favouriteMovies, addToFavouriteMovies, removeFromFavourites } = useFavourites();
 
     return (
         <div className="container">
             <Favourites 
                 movies={favouriteMovies} 
                 onSelectMovie={setSelectedMovie}
-                onDeleteFromFavourites={deleteFromFavourites}
+                onDeleteFromFavourites={removeFromFavourites}
             />
             <div className="search-movie">
                 <SearchMovie onSearchMovie={onSearchMovie} />
@@ -43,7 +42,7 @@ const MoviesPage = () => {
                 {selectedMovie !== null && (
                         <>
                             <ShowMovie movie={selectedMovie} />
-                            <button onClick={() => addToFavoriteMovies(selectedMovie)}>Add to favourite</button>
+                            <button onClick={() => addToFavouriteMovies(selectedMovie)}>Add to favourite</button>
                         </>
                     )
                 }

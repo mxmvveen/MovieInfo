@@ -1,1 +1,0 @@
-export const saveSearchHistory = (history: string[], query: string): string[] => Array.from(new Set([...history, query]));
