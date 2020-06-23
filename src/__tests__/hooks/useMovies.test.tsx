@@ -52,12 +52,12 @@ describe('useMovies', () => {
         const { result } = renderHook(() => useMovies());
         await act(async () => {
             await result.current.onSearchMovie('test');
-            await result.current.onSearchMovie('jaat');
-            expect(result.current.searchHistory).toEqual(['test', 'jaat']);
+            await result.current.onSearchMovie('another test');
+            expect(result.current.searchHistory).toEqual(['test', 'another test']);
 
             result.current.deleteFromHistory('test');
 
-            expect(result.current.searchHistory).toEqual(['jaat']);
+            expect(result.current.searchHistory).toEqual(['another test']);
         });
     });
 });
